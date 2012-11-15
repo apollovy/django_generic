@@ -89,7 +89,7 @@ def file_like_function_fabric(field_class, _property_name):
                 blank=blank,
             ),
             'Meta': type('Meta', (object,), {'abstract': True, }),
-            '__module__': 'apps.generic.models',
+            '__module__': 'apollov.django.apps.generic.models',
         }
 
         return type('%sable' % field_class.__name__.replace('Field', ''),
