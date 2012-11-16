@@ -29,3 +29,9 @@ class MetaFieldedTranslationOptions(TranslationOptions):
     fields = ('meta_title', 'meta_description', 'meta_keywords',)
 
 with_metafields_translation = with_translation(MetaFieldedTranslationOptions)
+
+
+class DescriptedTranslationOptions(TranslationOptions):
+    fields = ('description',)
+
+with_description_translation = with_translation(DescriptedTranslationOptions)
