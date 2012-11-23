@@ -8,7 +8,8 @@ from modeltranslation.translator import TranslationOptions
 
 def with_translation(translation_options, to_top=False):
     def wrapper(cls):
-        if cls.fields:
+        fields = getattr(cls, 'fields', ())
+        if fields:
             if not to_top:
                 cls.fields = cls.fields + translation_options.fields
             else:
