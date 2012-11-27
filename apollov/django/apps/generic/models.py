@@ -79,6 +79,9 @@ def upload_to(file_name, model_name, *args):
 
 
 def file_like_function_fabric(field_class, _property_name):
+    '''
+    @usage: Fabric(__file__, model_name)
+    '''
     def Wrapper(file_name, model_name, property_name=_property_name,
                 null=False, blank=False,):
         im_dict = {
@@ -97,8 +100,18 @@ def file_like_function_fabric(field_class, _property_name):
     return Wrapper
 
 
-ImageableModelFabric = file_like_function_fabric(ImageField, 'image')
-FileableModelFabric = file_like_function_fabric(FileField, 'file')
+def ImageableModelFabric(*args, **kwargs):
+    '''
+    @usage: ImageableModelFabric(__file__, model_name)
+    '''
+    return file_like_function_fabric(ImageField, 'image')(*args, **kwargs)
+
+
+def FileableModelFabric(*args, **kwargs):
+    '''
+    @usage: FileableModelFabric(__file__, model_name)
+    '''
+    return file_like_function_fabric(FileField, 'file')(*args, **kwargs)
 
 
 class Descripted(Model):
