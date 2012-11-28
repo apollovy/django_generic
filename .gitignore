@@ -1,1 +1,17 @@
+##########
+# Python #
+##########
 *.pyc
+*.pyo
+
+#######
+# pip #
+#######
+/*.egg-info
+
+###########
+# Eclipse #
+###########
+/.project
+/.pydevproject
+/.settings/
