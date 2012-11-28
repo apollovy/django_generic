@@ -5,85 +5,115 @@ Created on 08.08.2012
 '''
 from django.utils.translation import ugettext_lazy as _
 
-from django.contrib.admin import ModelAdmin
+from django.contrib.admin.options import ModelAdmin
 
+from helpers import admin, inline, with_section, file_url_fabric
 
-def with_section(model_admin, to_top=False):
-    def wrapper(cls):
-        if cls.fieldsets:
-            if not to_top:
-                cls.fieldsets = cls.fieldsets + model_admin.fieldsets
-            else:
-                cls.fieldsets = model_admin.fieldsets + cls.fieldsets
-        else:
-            cls.fieldsets = model_admin.fieldsets
-        return cls
-    return wrapper
-
-
-class TitledAdmin(ModelAdmin):
-    fieldsets = (
+_titled_dict = dict(
+    fieldsets=(
         (None, {'fields': ('title',)}),
-    )
+    ),
+    list_display=('title',),
+)
+
+TitledAdmin = admin('TitledAdmin', _titled_dict)
+TitledInline = inline('TitledInline', _titled_dict)
 
 with_title = with_section(TitledAdmin)
+with_title_inline = with_section(TitledInline)
 
 
-class MetaFieldedAdmin(ModelAdmin):
-    fieldsets = (
+_metafielded_dict = dict(
+    fieldsets=(
         (_('Meta properties'), {
             'fields': ('meta_title', 'meta_description', 'meta_keywords'),
             'classes': ('collapse',),
-    }),)
+    }),),
+)
+
+MetaFieldedAdmin = admin('MetaFieldedAdmin', _metafielded_dict)
+MetaFieldedInline = inline('MetaFieldedAdmin', _metafielded_dict)
 
 with_metafields = with_section(MetaFieldedAdmin)
+with_metafields_inline = with_section(MetaFieldedInline)
 
 
-class SortableAdmin(ModelAdmin):
-    fieldsets = (
+_sortable_dict = dict(
+    fieldsets=(
         (None, {'fields': ('sorting_order',)}),
-    )
+    ),
+    list_display=('sorting_order',),
+)
+
+SortableAdmin = admin('SortableAdmin', _sortable_dict)
+SortableInline = inline('SortableInline', _sortable_dict)
 
 with_sorting = with_section(SortableAdmin)
+with_sorting_inline = with_section(SortableInline)
 
 
-class FileableAdmin(ModelAdmin):
-    fieldsets = (
+_fileable_dict = dict(
+    fieldsets=(
         (None, {'fields': ('file',)}),
-    )
+    ),
+    list_display=('file_url',),
+    file_url=file_url_fabric('file'),
+)
+
+FileableAdmin = admin('FileableAdmin', _fileable_dict)
+FileableInline = inline('FileableInline', _fileable_dict)
 
 with_file = with_section(FileableAdmin)
+with_file_inline = with_section(FileableInline)
 
 
-class ImageableAdmin(ModelAdmin):
-    fieldsets = (
+_imageable_dict = dict(
+    fieldsets=(
         (None, {'fields': ('image',)}),
-    )
+    ),
+    list_display=('file_url',),
+    file_url=file_url_fabric('image'),
+)
+
+ImageableAdmin = admin('ImageableAdmin', _imageable_dict)
+ImageableInline = inline('ImageableInline', _imageable_dict)
 
 with_image = with_section(ImageableAdmin)
+with_image_inline = with_section(ImageableInline)
 
 
-class DescriptedAdmin(ModelAdmin):
-    fieldsets = (
+_descripted_dict = dict(
+    fieldsets=(
         (None, {'fields': ('description',)}),
-    )
+    ),
+)
+
+DescriptedAdmin = admin('DescriptedAdmin', _descripted_dict)
+DescriptedInline = inline('DescriptedInline', _descripted_dict)
 
 with_description = with_section(DescriptedAdmin)
+with_description_inline = with_section(DescriptedInline)
 
 
-class PublishedAdmin(ModelAdmin):
-    fieldsets = (
+_published_dict = dict(
+    fieldsets=(
         (None, {'fields': (('is_published', 'publish_date_time'),)}),
-    )
+    ),
+    date_hierarchy='publish_date_time',
+    list_display=('publish_date_time', 'is_published',),
+    list_editable=('is_published',),
+    list_filter=('is_published',),
+)
+
+PublishedAdmin = admin('PublishedAdmin', _published_dict)
+PublishedInline = inline('PublishedInline', _published_dict)
 
 with_published = with_section(PublishedAdmin)
+with_published_inline = with_section(PublishedInline)
 
 
 @with_published
 @with_sorting
 @with_title
 class TitledSortablePublishedAdmin(ModelAdmin):
-    list_display = ('sorting_order', 'title', 'is_published',)
-    list_display_links = ('title',)
-    list_editable = ('sorting_order', 'is_published',)
-    list_filter = ('is_published',)
+    pass

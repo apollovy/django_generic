@@ -3,15 +3,15 @@ Created on 07.08.2012
 
 @author: apollov
 '''
-from posixpath import join, sep, splitext
 from datetime import datetime
 
 from django.db.models import (Model, CharField, SmallIntegerField, ImageField,
     TextField, FileField, DateTimeField, BooleanField)
 from django.utils.translation import ugettext_lazy as _
-from django.conf import settings
 
+from helpers import file_like_function_fabric
 from managers import PublishedManager
+from settings import GENERIC_SETTINGS
 
 
 class Titled(Model):
@@ -19,7 +19,7 @@ class Titled(Model):
     Abstract model with title.
     '''
     title = CharField(
-        max_length=settings.TITLE_MAX_LENGTH,
+        max_length=GENERIC_SETTINGS['TITLE_MAX_LENGTH'],
         verbose_name=_('title'),
     )
 
@@ -49,19 +49,19 @@ class MetaFielded(Model):
     Abstract model with fields responsible for meta tags on a web page.
     '''
     meta_title = CharField(
-        max_length=settings.TITLE_MAX_LENGTH,
+        max_length=GENERIC_SETTINGS['TITLE_MAX_LENGTH'],
         verbose_name=_('meta title'),
         null=True,
         blank=True,
     )
     meta_description = CharField(
-        max_length=settings.TITLE_MAX_LENGTH,
+        max_length=GENERIC_SETTINGS['TITLE_MAX_LENGTH'],
         verbose_name=_('meta description'),
         null=True,
         blank=True,
     )
     meta_keywords = CharField(
-        max_length=settings.TITLE_MAX_LENGTH,
+        max_length=GENERIC_SETTINGS['TITLE_MAX_LENGTH'],
         verbose_name=_('meta keywords'),
         null=True,
         blank=True,
@@ -69,35 +69,6 @@ class MetaFielded(Model):
 
     class Meta(object):
         abstract = True
-
-
-def upload_to(file_name, model_name, *args):
-    return join(settings.PROJECT_NAME,
-                splitext(file_name.split(sep)[-2])[0],
-                model_name,
-                *args)
-
-
-def file_like_function_fabric(field_class, _property_name):
-    '''
-    @usage: Fabric(__file__, model_name)
-    '''
-    def Wrapper(file_name, model_name, property_name=_property_name,
-                null=False, blank=False,):
-        im_dict = {
-            property_name: field_class(
-                upload_to=upload_to(file_name, model_name, property_name),
-                verbose_name=_(property_name.replace('_', ' ')),
-                null=null,
-                blank=blank,
-            ),
-            'Meta': type('Meta', (object,), {'abstract': True, }),
-            '__module__': 'apollov.django.apps.generic.models',
-        }
-
-        return type('%sable' % field_class.__name__.replace('Field', ''),
-                    (Model,), im_dict)
-    return Wrapper
 
 
 def ImageableModelFabric(*args, **kwargs):
