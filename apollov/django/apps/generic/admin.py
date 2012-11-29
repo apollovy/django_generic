@@ -95,6 +95,19 @@ with_description = with_section(DescriptedAdmin)
 with_description_inline = with_section(DescriptedInline)
 
 
+def _publish_wrapper(func_name, publish):
+    def wrapper(modeladmin, request, queryset):
+        queryset.update(is_published=publish)
+    wrapper.func_name = func_name
+    return wrapper
+
+
+_make_published = _publish_wrapper('make_published', True)
+_make_published.short_description = _('Publish selected items')
+
+_make_unpublished = _publish_wrapper('make_unpublished', False)
+_make_unpublished.short_description = _('Unpublish selected items')
+
 _published_dict = dict(
     fieldsets=(
         (None, {'fields': (('is_published', 'publish_date_time'),)}),
@@ -103,6 +116,7 @@ _published_dict = dict(
     list_display=('publish_date_time', 'is_published',),
     list_editable=('is_published',),
     list_filter=('is_published',),
+    actions=(_make_published, _make_unpublished,),
 )
 
 PublishedAdmin = admin('PublishedAdmin', _published_dict)

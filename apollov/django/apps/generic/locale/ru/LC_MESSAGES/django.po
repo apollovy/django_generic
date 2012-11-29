@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-14 14:45+0400\n"
+"POT-Creation-Date: 2012-11-29 20:04+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,9 +19,21 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
 
-#: admin.py:34
+#: admin.py:28
 msgid "Meta properties"
 msgstr "Мета свойства"
+
+#: admin.py:106
+msgid "Publish selected items"
+msgstr "Опубликовать выделенные элементы"
+
+#: admin.py:109
+msgid "Unpublish selected items"
+msgstr "Снять с публикации выделенные элементы"
+
+#: helpers.py:24
+msgid "link"
+msgstr "ссылка"
 
 #: models.py:23
 msgid "title"
@@ -43,15 +55,15 @@ msgstr "мета описание"
 msgid "meta keywords"
 msgstr "мета ключевые слова"
 
-#: models.py:106
+#: models.py:90
 msgid "description"
 msgstr "описание"
 
-#: models.py:117
+#: models.py:101
 msgid "publish date and time"
 msgstr "дата и время публикации"
 
-#: models.py:123
+#: models.py:107
 msgid "published?"
 msgstr "опубликовано?"
 
