@@ -9,4 +9,4 @@ GENERIC_SETTINGS = {
     'TITLE_MAX_LENGTH': 200,
 }
 
-GENERIC_SETTINGS.update(settings.GENERIC_SETTINGS)
+GENERIC_SETTINGS.update(getattr(settings, 'GENERIC_SETTINGS', {}))
