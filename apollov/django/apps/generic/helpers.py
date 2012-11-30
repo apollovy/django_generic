@@ -48,6 +48,7 @@ def with_section(model_admin):
             _handle_attr('list_display_links'),
             _handle_attr('list_editable'),
             _handle_attr('list_filter'),
+            _handle_attr('search_fields'),
         ):
             cls = handler(cls)
         return type(cls.__name__, (cls, model_admin), module_dict())

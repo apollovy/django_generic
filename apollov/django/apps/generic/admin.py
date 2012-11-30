@@ -14,6 +14,7 @@ _titled_dict = dict(
         (None, {'fields': ('title',)}),
     ),
     list_display=('title',),
+    search_fields=('title',),
 )
 
 TitledAdmin = admin('TitledAdmin', _titled_dict)
@@ -26,9 +27,10 @@ with_title_inline = with_section(TitledInline)
 _metafielded_dict = dict(
     fieldsets=(
         (_('Meta properties'), {
-            'fields': ('meta_title', 'meta_description', 'meta_keywords'),
+            'fields': ('meta_title', 'meta_description', 'meta_keywords',),
             'classes': ('collapse',),
     }),),
+    search_fields=('meta_title', 'meta_description', 'meta_keywords',),
 )
 
 MetaFieldedAdmin = admin('MetaFieldedAdmin', _metafielded_dict)
@@ -86,6 +88,7 @@ _descripted_dict = dict(
     fieldsets=(
         (None, {'fields': ('description',)}),
     ),
+    search_fields=('description',),
 )
 
 DescriptedAdmin = admin('DescriptedAdmin', _descripted_dict)
