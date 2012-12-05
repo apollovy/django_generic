@@ -114,6 +114,12 @@ class Published(Model):
 
     objects = PublishedManager()
 
+    @classmethod
+    def publish_date_set(cls):
+        fname = 'publish_date_time'
+        return set(i[fname].date() for i in cls.objects.published()\
+                   .order_by(fname).values(fname))
+
 
 class TitledSortablePublished(Titled, Sortable, Published):
     class Meta(Sortable.Meta):
