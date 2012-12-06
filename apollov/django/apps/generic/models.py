@@ -77,12 +77,18 @@ def ImageableModelFabric(*args, **kwargs):
     '''
     return file_like_function_fabric(ImageField, 'image')(*args, **kwargs)
 
+# translation hook
+_('image')
+
 
 def FileableModelFabric(*args, **kwargs):
     '''
     @usage: FileableModelFabric(__file__, model_name)
     '''
     return file_like_function_fabric(FileField, 'file')(*args, **kwargs)
+
+# translation hook
+_('file')
 
 
 class Descripted(Model):

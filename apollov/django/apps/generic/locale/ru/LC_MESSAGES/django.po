@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-29 20:04+0400\n"
+"POT-Creation-Date: 2012-12-06 20:56+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,15 +19,15 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
 
-#: admin.py:28
+#: admin.py:29
 msgid "Meta properties"
 msgstr "Мета свойства"
 
-#: admin.py:106
+#: admin.py:110
 msgid "Publish selected items"
 msgstr "Опубликовать выделенные элементы"
 
-#: admin.py:109
+#: admin.py:113
 msgid "Unpublish selected items"
 msgstr "Снять с публикации выделенные элементы"
 
@@ -55,20 +55,42 @@ msgstr "мета описание"
 msgid "meta keywords"
 msgstr "мета ключевые слова"
 
-#: models.py:90
+#: models.py:81
+msgid "image"
+msgstr "рисунок"
+
+#: models.py:91
+msgid "file"
+msgstr "файл"
+
+#: models.py:96
 msgid "description"
 msgstr "описание"
 
-#: models.py:101
+#: models.py:107
 msgid "publish date and time"
 msgstr "дата и время публикации"
 
-#: models.py:107
+#: models.py:113
 msgid "published?"
 msgstr "опубликовано?"
 
-#~ msgid "image"
-#~ msgstr "рисунок"
+#: models.py:133
+msgid "email"
+msgstr "email"
 
-#~ msgid "file"
-#~ msgstr "файл"
+#: models.py:145
+msgid "last name"
+msgstr "фамилия"
+
+#: models.py:149
+msgid "name"
+msgstr "имя"
+
+#: models.py:153
+msgid "middle name"
+msgstr "отчество"
+
+#: models.py:166
+msgid "full name"
+msgstr "полное имя"
