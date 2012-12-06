@@ -45,6 +45,7 @@ _sortable_dict = dict(
         (None, {'fields': ('sorting_order',)}),
     ),
     list_display=('sorting_order',),
+    list_editable=('sorting_order',),
 )
 
 SortableAdmin = admin('SortableAdmin', _sortable_dict)
