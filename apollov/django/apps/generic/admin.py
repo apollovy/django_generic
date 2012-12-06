@@ -129,6 +129,20 @@ with_published = with_section(PublishedAdmin)
 with_published_inline = with_section(PublishedInline)
 
 
+_emailed_dict = dict(
+    fieldsets=(
+        (None, {'fields': ('email',)}),
+    ),
+    list_display=('email',),
+)
+
+EmailedAdmin = admin('EmailedAdmin', _emailed_dict)
+EmailedInline = inline('EmailedInline', _emailed_dict)
+
+with_email = with_section(EmailedAdmin)
+with_email_inline = with_section(EmailedInline)
+
+
 @with_published
 @with_sorting
 @with_title

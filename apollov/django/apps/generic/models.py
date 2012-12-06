@@ -6,7 +6,7 @@ Created on 07.08.2012
 from datetime import datetime
 
 from django.db.models import (Model, CharField, SmallIntegerField, ImageField,
-    TextField, FileField, DateTimeField, BooleanField)
+    TextField, FileField, DateTimeField, BooleanField, EmailField,)
 from django.utils.translation import ugettext_lazy as _
 
 from helpers import file_like_function_fabric
@@ -119,6 +119,18 @@ class Published(Model):
         fname = 'publish_date_time'
         return set(i[fname].date() for i in cls.objects.published()\
                    .order_by(fname).values(fname))
+
+
+class Emailed(Model):
+    email = EmailField(
+        max_length=GENERIC_SETTINGS['MAX_EMAIL_LENGTH'],
+        verbose_name=_('email'),
+        null=True,
+        blank=True,
+    )
+
+    class Meta:
+        abstract = True
 
 
 class TitledSortablePublished(Titled, Sortable, Published):
