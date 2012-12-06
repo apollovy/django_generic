@@ -48,3 +48,9 @@ class FileableTranslationOptions(TranslationOptions):
     fields = ('file',)
 
 with_file_translation = with_translation(FileableTranslationOptions)
+
+
+class HumanTranslationOptions(TranslationOptions):
+    fields = ('last_name', 'name', 'middle_name',)
+
+with_human_translation = with_translation(HumanTranslationOptions)

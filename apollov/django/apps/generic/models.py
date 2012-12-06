@@ -133,6 +133,33 @@ class Emailed(Model):
         abstract = True
 
 
+class Human(Model):
+    last_name = CharField(
+        max_length=GENERIC_SETTINGS['MAX_NAME_LENGTH'],
+        verbose_name=_('last name'),
+    )
+    name = CharField(
+        max_length=GENERIC_SETTINGS['MAX_NAME_LENGTH'],
+        verbose_name=_('name'),
+    )
+    middle_name = CharField(
+        max_length=GENERIC_SETTINGS['MAX_NAME_LENGTH'],
+        verbose_name=_('middle name'),
+        null=True,
+        blank=True,
+    )
+
+    class Meta:
+        abstract = True
+
+    def full_name(self):
+        _full_name = u'%s %s' % (self.last_name, self.name)
+        if self.middle_name:
+            _full_name += u' %s' % self.middle_name
+        return _full_name
+    full_name.short_description = _('full name')
+
+
 class TitledSortablePublished(Titled, Sortable, Published):
     class Meta(Sortable.Meta):
         abstract = True

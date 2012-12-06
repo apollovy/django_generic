@@ -144,6 +144,21 @@ with_email = with_section(EmailedAdmin)
 with_email_inline = with_section(EmailedInline)
 
 
+_human_dict = dict(
+    fieldsets=(
+        (None, {'fields': ('last_name', 'name', 'middle_name',)}),
+    ),
+    list_display=('full_name',),
+    search_fields=('last_name', 'name', 'middle_name',),
+)
+
+HumanAdmin = admin('HumanAdmin', _human_dict)
+HumanInline = inline('HumanInline', _human_dict)
+
+with_human = with_section(HumanAdmin)
+with_human_inline = with_section(HumanInline)
+
+
 @with_published
 @with_sorting
 @with_title
