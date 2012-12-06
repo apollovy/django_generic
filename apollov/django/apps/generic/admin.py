@@ -134,6 +134,7 @@ _emailed_dict = dict(
         (None, {'fields': ('email',)}),
     ),
     list_display=('email',),
+    search_fields=('email',),
 )
 
 EmailedAdmin = admin('EmailedAdmin', _emailed_dict)
