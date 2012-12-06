@@ -36,3 +36,15 @@ class DescriptedTranslationOptions(TranslationOptions):
     fields = ('description',)
 
 with_description_translation = with_translation(DescriptedTranslationOptions)
+
+
+class ImageableTranslationOptions(TranslationOptions):
+    fields = ('image',)
+
+with_image_translation = with_translation(ImageableTranslationOptions)
+
+
+class FileableTranslationOptions(TranslationOptions):
+    fields = ('file',)
+
+with_file_translation = with_translation(FileableTranslationOptions)
