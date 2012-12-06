@@ -6,9 +6,9 @@ Created on 28.11.2012
 from django.conf import settings
 
 GENERIC_SETTINGS = {
-    'TITLE_MAX_LENGTH': 200,
-    'MAX_EMAIL_LENGTH': 320,  # http://tools.ietf.org/html/rfc3696#section-3
-    'MAX_NAME_LENGTH': 100,
+    'EMAIL_LENGTH_MAX': 320,  # http://tools.ietf.org/html/rfc3696#section-3
+    'NAME_LENGTH_MAX': 100,
+    'TITLE_LENGTH_MAX': 200,
 }
 
 GENERIC_SETTINGS.update(getattr(settings, 'GENERIC_SETTINGS', {}))

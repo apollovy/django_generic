@@ -19,7 +19,7 @@ class Titled(Model):
     Abstract model with title.
     '''
     title = CharField(
-        max_length=GENERIC_SETTINGS['TITLE_MAX_LENGTH'],
+        max_length=GENERIC_SETTINGS['TITLE_LENGTH_MAX'],
         verbose_name=_('title'),
     )
 
@@ -49,19 +49,19 @@ class MetaFielded(Model):
     Abstract model with fields responsible for meta tags on a web page.
     '''
     meta_title = CharField(
-        max_length=GENERIC_SETTINGS['TITLE_MAX_LENGTH'],
+        max_length=GENERIC_SETTINGS['TITLE_LENGTH_MAX'],
         verbose_name=_('meta title'),
         null=True,
         blank=True,
     )
     meta_description = CharField(
-        max_length=GENERIC_SETTINGS['TITLE_MAX_LENGTH'],
+        max_length=GENERIC_SETTINGS['TITLE_LENGTH_MAX'],
         verbose_name=_('meta description'),
         null=True,
         blank=True,
     )
     meta_keywords = CharField(
-        max_length=GENERIC_SETTINGS['TITLE_MAX_LENGTH'],
+        max_length=GENERIC_SETTINGS['TITLE_LENGTH_MAX'],
         verbose_name=_('meta keywords'),
         null=True,
         blank=True,
@@ -123,7 +123,7 @@ class Published(Model):
 
 class Emailed(Model):
     email = EmailField(
-        max_length=GENERIC_SETTINGS['MAX_EMAIL_LENGTH'],
+        max_length=GENERIC_SETTINGS['EMAIL_LENGTH_MAX'],
         verbose_name=_('email'),
         null=True,
         blank=True,
@@ -135,15 +135,15 @@ class Emailed(Model):
 
 class Human(Model):
     last_name = CharField(
-        max_length=GENERIC_SETTINGS['MAX_NAME_LENGTH'],
+        max_length=GENERIC_SETTINGS['NAME_LENGTH_MAX'],
         verbose_name=_('last name'),
     )
     name = CharField(
-        max_length=GENERIC_SETTINGS['MAX_NAME_LENGTH'],
+        max_length=GENERIC_SETTINGS['NAME_LENGTH_MAX'],
         verbose_name=_('name'),
     )
     middle_name = CharField(
-        max_length=GENERIC_SETTINGS['MAX_NAME_LENGTH'],
+        max_length=GENERIC_SETTINGS['NAME_LENGTH_MAX'],
         verbose_name=_('middle name'),
         null=True,
         blank=True,
