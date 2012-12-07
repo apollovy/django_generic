@@ -158,12 +158,17 @@ class Human(Model):
     class Meta:
         abstract = True
 
-    def full_name(self):
-        _full_name = u'%s %s' % (self.last_name, self.name)
+    def full_name(self, short=False):
+        _full_name = u'%s %s' % (self.last_name, self.name if not short\
+                                 else u'%s.' % self.name[0])
         if self.middle_name:
-            _full_name += u' %s' % self.middle_name
+            _full_name += u' %s' % self.middle_name if not short\
+                else u'%s.' % self.middle_name[0]
         return _full_name
     full_name.short_description = _('full name')
+
+    def short_name(self):
+        return self.full_name(short=True)
 
 
 class TitledSortablePublished(Titled, Sortable, Published):
