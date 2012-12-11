@@ -29,4 +29,4 @@ class MlSearchQuerySet(haystack.query.SearchQuerySet):
             kwd = kwargs.pop('content')
             kwdkey = "text_%s" % str(get_language())
             kwargs[kwdkey] = kwd
-            return super(MlSearchQuerySet, self).filter(**kwargs)
+        return super(MlSearchQuerySet, self).filter(**kwargs)
