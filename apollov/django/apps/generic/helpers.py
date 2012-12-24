@@ -3,6 +3,7 @@ Created on 28.11.2012
 
 @author: apollov
 '''
+from copy import deepcopy
 from posixpath import join, sep, splitext
 
 from django.db.models import Model
@@ -31,9 +32,9 @@ def with_section(model_admin):
     def wrapper(cls):
         def _handle_attr(attr_name, default_value=None):
             def wrapper(cls):
-                cls_attr = getattr(cls, attr_name, default_value)
-                model_admin_attr = getattr(model_admin, attr_name,
-                                           default_value)
+                cls_attr = deepcopy(getattr(cls, attr_name, default_value))
+                model_admin_attr = deepcopy(getattr(model_admin, attr_name,
+                                           default_value))
                 if model_admin_attr != default_value and model_admin_attr:
                     if cls_attr != default_value and cls_attr:
                         setattr(cls, attr_name, cls_attr + model_admin_attr)
