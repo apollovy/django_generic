@@ -21,8 +21,12 @@ def module_dict(**kwargs):
 
 def file_url_fabric(attr_name):
     def wrapper(self, obj):
-        return '<a href="%s" target="_blank">%s</a>' % (
-            getattr(obj, attr_name).url, capfirst(_('link')),)
+        attr = getattr(obj, attr_name)
+        if attr:
+            return '<a href="%s" target="_blank">%s</a>' % (
+                                                attr.url, capfirst(_('link')),)
+        else:
+            return '<span>---</span>'
     wrapper.short_description = _(attr_name)
     wrapper.allow_tags = True
     return wrapper
